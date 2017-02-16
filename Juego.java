@@ -147,9 +147,65 @@ public class Juego
      */
     private void jugar()
     {
-
+        Scanner scanner = new Scanner(System.in);
         
-    }    
+        repartir();
+        
+        for(int i = 0; i < 5; i++)
+        {
+          System.out.println("");
+        
+          System.out.println("Estas son tus cartas: ");
+          jugadores[0].verCartasJugador();
+            
+            
+          System.out.println("");
+           
+          Carta cartaALanzar = null;
+          while (cartaALanzar == null) {
+              System.out.println("¿Que carta desea lanzar?");
+              cartaALanzar = jugadores[0].tirarCarta(scanner.nextLine());
+          }
+          System.out.println("");
+
+          Baza baza = new Baza(jugadores.length, paloQuePinta);
+          baza.addCarta(cartaALanzar, jugadores[0].getNombre());
+          
+          for (int cont = 1; cont < jugadores.length; cont++) {
+              Carta cartaBot = jugadores[cont].tirarCartaInteligentemente(baza.getPaloPrimeraCartaDeLaBaza(),
+              baza.cartaQueVaGanandoLaBaza(), paloQuePinta);
+              baza.addCarta(cartaBot, jugadores[cont].getNombre());
+             }
+             
+          System.out.println("");
+             // Imprimos que jugador a ganado la baza en la mano correspondiente.
+          System.out.println("El jugador que ha ganado la baza es: " + 
+          baza.nombreJugadorQueVaGanandoLaBaza() + " con la carta: " + 
+          baza.cartaQueVaGanandoLaBaza());
+                 
+          System.out.println("");
+          jugadores[encontrarPosicionJugadorPorNombre(baza.nombreJugadorQueVaGanandoLaBaza())].addBaza(baza);
+        }
+         
+        System.out.println("");
+        
+        System.out.println("El jugador " + jugadores[0].getNombre() + " ha hecho " +
+             jugadores[0].getNumeroBazasGanadas() + " bazas");
+         
+        System.out.println("");
+        if (jugadores[0].getNumeroBazasGanadas() < 2) {
+             System.out.println("El jugador " + jugadores[0].getNombre() + 
+                 " ha hecho JULEPE!");
+        }
+        else {
+             System.out.println("El jugador " + jugadores[0].getNombre() + 
+             " no ha hecho JULEPE!");
+        }
+         
+        System.out.println("");
+
+        System.out.println("FIN DEL JUEGO!");
+    }  
 }
 
 
