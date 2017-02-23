@@ -124,11 +124,11 @@ public class Jugador
     /**
      * Método que tira una carta "inteligentemente"
      */
-    public Carta tirarCartaInteligentemente(int paloPrimeraCartaDeLaBaza, 
+    public Carta tirarCartaInteligentemente(Palo paloPrimeraCartaDeLaBaza, 
                                             Carta cartaQueVaGanando,
-                                            int paloQuePinta)
+                                            Palo paloQuePinta)
     {
-        return tirarCartaAleatoria();        
+        return tirarCartaAleatoria();
     }
     
     

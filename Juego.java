@@ -11,7 +11,7 @@ public class Juego
 {
     private Jugador[] jugadores;
     private Mazo mazo;
-    private int paloQuePinta;
+    private Palo paloQuePinta;
 
 
     /**
@@ -66,7 +66,7 @@ public class Juego
      *
      * @return El palo que pinta tras repartir
      */
-    private int repartir() 
+    private Palo repartir() 
     {
         mazo.barajar();
 
@@ -79,20 +79,7 @@ public class Juego
         }
 
         paloQuePinta = nuevaCarta.getPalo();
-        switch (paloQuePinta) {
-            case 0:
-            System.out.println("Pintan oros");
-            break;
-            case 1:
-            System.out.println("Pintan copas");
-            break;
-            case 2:
-            System.out.println("Pintan espadas");
-            break;
-            case 3:
-            System.out.println("Pintan bastos");
-            break;
-        }
+        System.out.println("Pintan" + paloQuePinta.toString().toLowerCase());
 
         return paloQuePinta;           
     }
